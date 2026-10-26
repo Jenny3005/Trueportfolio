@@ -1,122 +1,97 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-
+import "./App.css";
+import { IoMdDownload, IoMdMail } from "react-icons/io";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import logo from "./assets/logo.png";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+    <div className="App">
+      <nav className="navbar">
+        <div className="navbar-logo">
+          <div className="button3">
+            <a href="/">JH</a>
+          </div>
           <ul>
             <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
+              <a href="/">Accueil</a>
             </li>
             <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
+              <a href="/about">À propos</a>
+            </li>
+            <li>
+              <a href="/competences">Compétences</a>
+            </li>
+            <li>
+              <a href="/services">Services</a>
+            </li>
+            <li>
+              <a href="/projects">Projets</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
             </li>
           </ul>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </nav>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <div className="content">
+        <div className="presentation">
+          <div className="presentation-text">
+            <h1>Bonjour je suis,</h1>
+
+            <h2>
+              <span className="prenom">Jenny</span>{" "}
+              <span className="nom">HOUNDONOUGBO</span>
+            </h2>
+
+            <p>
+              Passionnée par la technologie et la création de solutions
+              numériques, je conçois des applications web et mobiles qui allient
+              performance, design et expérience utilisateur.
+            </p>
+
+            <div className="buttons">
+              <div className="button1">
+                <a href="/projects">Voir mes projets</a>
+                <IoMdDownload className="download-icon" />
+              </div>
+
+              <div className="button2">
+                <IoMdMail className="mail-icon" />
+                <a href="/contact">Me contacter</a>
+              </div>
+            </div>
+            <div className="social-icons">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="mailto:your.email@example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoMdMail />
+              </a>
+            </div>
+          </div>
+
+          <div className="presentation-image">
+            <img src={logo} alt="Profile" className="profile-image" />
+          </div>
+        </div>
+      </div>
+      <hr className="trait-blanc" />
+    </div>
+  );
 }
-
-export default App
+export default App;
