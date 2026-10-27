@@ -8,18 +8,25 @@
   justify-content: center;
 }
 
-
 .content {
-  background-image: url('./assets/fond.png');
+  background-image: url("./assets/fond.png");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 25px;
-
-  
+  animation: zoomFond 8s ease-in-out infinite alternate;
 }
 
+@keyframes zoomFond {
+  from {
+    background-size: 100% 100%;
+  }
+
+  to {
+    background-size: 110% 110%;
+  }
+}
 .navbar {
-  background-color: #0C15B7;
+  background-color: #0c15b7;
   margin: 0;
   padding: 0;
   height: 30px;
@@ -29,7 +36,6 @@
   display: inline-block;
   margin-right: 20px;
 }
-
 
 .navbar ul {
   margin: 0;
@@ -46,7 +52,7 @@ a {
 }
 
 .nom {
-  color: #1330EA;
+  color: #1330ea;
 }
 
 .buttons {
@@ -55,35 +61,31 @@ a {
   margin-top: 40px;
 }
 
-.button1 a {
+.button1 a,
+.button3 a {
   color: white;
 }
 
 .download-icon {
-  margin-left: 10px;     
+  margin-left: 10px;
   position: relative;
   top: 4px;
 }
 
-.profile-image {
-  width: 300px;
-  height: 300px;
-}
-
 .presentation {
   display: flex;
-  flex:1;
+  flex: 1;
 }
 
 .mail-icon {
   margin-right: 10px;
   position: relative;
   top: 4px;
-  color: #1330EA;
+  color: #1330ea;
 }
 
 .button1 {
-  background-color: #1330EA;
+  background-color: #1330ea;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -91,7 +93,7 @@ a {
 
 .button2 {
   background-color: white;
-  color: #1330EA;
+  color: #1330ea;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -110,23 +112,262 @@ a {
 
 .trait-blanc {
   display: block;
-  width: 1270px;
+  width: 1255px;
   height: 2px;
   background-color: white;
   border: none;
 }
 
-.navbar-logo{
+.navbar-logo {
   display: flex;
   justify-content: space-between;
 }
 
 .button3 {
-  background-color: #2241DE;
+  background-color: #2241de;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
   width: 20px;
   height: 20px;
   margin-left: 10px;
+}
+
+.profile-image {
+  width: 300px;
+  height: 300px;
+  animation: flottement 5s ease-in-out infinite;
+}
+
+@keyframes flottement {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.stat-icon {
+  font-size: 30px;
+  color: #00a6ff;
+}
+
+.stat p,
+.stat h3 {
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: -45px;
+  padding: 10px 15px;
+  border: 1px solid #1330ea;
+  border-radius: 18px;
+  background-color: #0a0e1f;
+  color: white;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-info p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stat-info h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.about {
+  margin-left: 30px;
+  display: flex;
+}
+
+.about-image {
+  width: 500px;
+  height: 400px;
+  animation: flottement 5s ease-in-out infinite;
+}
+
+.divcomp {
+  margin-left: 30px;
+  margin-top: -100px;
+  
+}
+
+.divcomp p {
+  background: linear-gradient(to right, white 0%, #1330EA 50%);
+  background-clip: text;
+  color: transparent;
+  
+}
+
+.developpement {
+  display: flex;
+  gap: 60px;
+}
+
+.web,.mobile,.base,.analyse {
+  border: 1px solid #1330ea;
+  border-radius: 18px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  width: 250px;
+  height: fit-content;
+  
+  display: flex;
+}
+.web {
+  margin-top: 10px;
+}
+.others {
+  display: flex;
+  gap: 60px;
+}
+
+.dev-icon {
+  font-size: 20px;
+  color: #00a6ff;
+  margin: 10px;
+}
+
+.competence {
+  margin-left: 30px;
+}
+
+.competence-item {
+  border: 1px solid #1330ea;
+  border-radius: 18px;
+  padding: 20px ;
+  background-color: rgba(18, 190, 238, 16%);
+  width: fit-content;
+  text-align: center;
+  width: 150px;
+  
+}
+
+.competence-list {
+  display: flex;
+  
+  margin-top: 60px;
+  justify-content: space-between;
+  margin-right: 30px;
+  
+}
+.html,.css,.javascript,.react,.tailwind,.laravel,.php,.django,.python,.mysql,.bootstrap,.paradigm,.vscode,.mobile,.git,.flutter,.dart,.firebase {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.competence-item p {
+  margin: 0;
+}
+
+.icon-html {
+  color: #e34c26;
+  font-size: 20px;
+}
+
+.icon-css {
+  color: #1572B6;
+  font-size: 20px;
+}
+
+.icon-javascript {
+  color: #F0DB4F;
+  font-size: 20px;
+}
+
+.icon-react {
+  color: #61DAFB;
+  font-size: 20px;
+}
+
+.icon-tailwind {
+  color: #06B6D4;
+  font-size: 20px;
+}
+
+.icon-laravel {
+  color: #FF2D20;
+  font-size: 20px;
+}
+
+.icon-php {
+  color: #777BB4;
+  font-size: 20px;
+}
+
+.icon-django {
+  color: #15ae74;
+  font-size: 20px;
+}
+
+.icon-python {
+  color: #3776AB;
+  font-size: 20px;
+}
+
+.icon-mysql {
+  color: #cae70e;
+  font-size: 20px;
+}
+
+.icon-bootstrap {
+  color: #563d7c;
+  font-size: 20px;
+}
+
+.icon-paradigm {
+  color: #ff3c00;
+  font-size: 20px;
+}
+
+.icon-vscode {
+  color: #007ACC;
+  font-size: 20px;
+}
+
+.icon-git {
+  color: #0c0c0c;
+  font-size: 20px;
+}
+
+.icon-flutter {
+  color: #02569B;
+  font-size: 20px;
+}
+
+.icon-dart {
+  color: #0175C2;
+  font-size: 20px;
+}
+
+.icon-firebase {
+  color: #FFCA28;
+  font-size: 20px;
 }
