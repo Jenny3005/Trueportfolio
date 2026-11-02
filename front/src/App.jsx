@@ -1,4 +1,5 @@
 import "./App.css";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { IoMdDownload, IoMdMail, IoIosSend } from "react-icons/io";
 import { FaGithub, FaLinkedin, FaFlutter } from "react-icons/fa6";
@@ -100,6 +101,57 @@ function App() {
 
     return projet.technologies.includes(filtre);
   });
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Une erreur est survenue.");
+      }
+
+      setStatus("Votre message a été envoyé avec succès !");
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      setStatus(error.message || "Impossible d'envoyer le message.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="App">
       <nav className="navbar">
@@ -156,26 +208,26 @@ function App() {
 
               <div className="button2">
                 <IoMdMail className="mail-icon" />
-                <a href="/contact">Me contacter</a>
+                <a href="#contact">Me contacter</a>
               </div>
             </div>
             <div className="social-icons">
               <a
-                href="https://github.com"
+                href="https://github.com/Jenny3005"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/jenny-houndonougbo-09a0712a4/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaLinkedin />
               </a>
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:jennyhoundon@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -540,9 +592,9 @@ function App() {
                       <SiMysql style={{ color: "cae70e" }} />
                       MySQL
                     </span>
-                    <a href="" className="icon-right">
+                    <Link to="/projets/culture" className="icon-right">
                       <CiCircleChevRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -578,9 +630,9 @@ function App() {
                       <BsBootstrapFill style={{ color: "#563d7c" }} />
                       Bootstrap
                     </span>
-                    <a href="" className="icon-right">
+                    <Link to="/projets/eventflow" className="icon-right">
                       <CiCircleChevRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -612,9 +664,9 @@ function App() {
                       <SiDjango style={{ color: "#15ae74" }} />
                       Django
                     </span>
-                    <a href="" className="icon-right">
+                    <Link to="/projets/sigrh" className="icon-right">
                       <CiCircleChevRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -642,9 +694,9 @@ function App() {
                       <SiFirebase style={{ color: "#FFCA28" }} />
                       Firebase
                     </span>
-                    <a href="" className="icon-right">
+                    <Link to="/projets/shoptrack" className="icon-right">
                       <CiCircleChevRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -681,21 +733,21 @@ function App() {
               <SiMediamarkt className="contact-icon" />
               <div className="social-icons2">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Jenny3005"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaGithub />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/jenny-houndonougbo-09a0712a4/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaLinkedin />
                 </a>
                 <a
-                  href="mailto:your.email@example.com"
+                  href="mailto:jennyhoundon@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -705,29 +757,54 @@ function App() {
             </div>
           </div>
           <div className="form">
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <label htmlFor="nom">
                 Nom complet <span style={{ color: "red" }}>*</span>
               </label>
+
               <input
                 type="text"
                 id="nom"
+                name="name"
                 placeholder="Entrez votre nom complet"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
 
               <label htmlFor="email">
                 Email <span style={{ color: "red" }}>*</span>
               </label>
-              <input type="text" id="email" placeholder="Votre@email.com" />
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Votre@email.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
 
               <label htmlFor="message">
                 Message <span style={{ color: "red" }}>*</span>
               </label>
-              <input type="text" id="message" placeholder="Votre message ..." />
 
-              <button className="send">
-                Envoyez un message <IoIosSend style={{ color: "#8D17E8" }} />
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Votre message ..."
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+
+              <button className="send" type="submit" disabled={loading}>
+                {loading ? "Envoi en cours..." : "Envoyer un message"}
+                {!loading && <IoIosSend style={{ color: "#8D17E8" }} />}
               </button>
+
+              {status && <p>{status}</p>}
             </form>
           </div>
         </div>
