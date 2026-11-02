@@ -337,7 +337,7 @@ function ProjetDetails() {
           <h1>{projet.titre}</h1>
           <span className="categorie">{projet.categorie}</span>
 
-          <p style={{ marginRight: "200px" }}>{projet.description}</p>
+          <p>{projet.description}</p>
 
           <div className="technologies-projet">
             {projet.technologies.map((technologie) => (

@@ -38,12 +38,13 @@ import about from "./assets/about.png";
 import sigrh from "./assets/sigrh.png";
 import shop from "./assets/shop.png";
 import eventflow from "./assets/eventflow.png";
-function App() {
-  const phrases = [
-    "Développeuse web et mobile",
-    "Je donne vie à des idées numériques",
-  ];
 
+const phrases = [
+  "Développeuse web et mobile",
+  "Je donne vie à des idées numériques",
+];
+
+function App() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [texte, setTexte] = useState("");
   const [effacement, setEffacement] = useState(false);
@@ -72,6 +73,31 @@ function App() {
 
     return () => clearTimeout(timer);
   }, [texte, effacement, phraseIndex]);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".reveal");
+
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   const [filtre, setFiltre] = useState("Tous");
   const projets = [
     { id: 1, categorie: "Web", technologies: ["Laravel", "MySQL"] },
@@ -183,7 +209,7 @@ function App() {
       </nav>
 
       <div className="content">
-        <div className="presentation">
+        <div className="presentation reveal">
           <div className="presentation-text" id="about">
             <h1>Bonjour je suis,</h1>
 
@@ -242,7 +268,7 @@ function App() {
         </div>
       </div>
       <hr className="trait-blanc" />
-      <div className="stats">
+      <div className="stats reveal">
         <div className="stat">
           <FaBriefcase className="stat-icon" />
           <div className="stat-info">
@@ -271,13 +297,9 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="about">
+      <div className="about reveal">
         <div className="about-text">
-          <ul>
-            <li>
-              <h2 style={{ color: "#622EDD" }}>À propos de moi</h2>
-            </li>
-          </ul>
+          <h2 className="section-title">À propos de moi</h2>
           <h3>Je transforme vos idées en</h3>
           <h3 style={{ color: "#622EDD" }}>solutions digitales</h3>
           <p>
@@ -323,12 +345,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="competence" id="competences">
-        <ul>
-          <li>
-            <h2 style={{ color: "#622EDD" }}>Mes Compétences</h2>
-          </li>
-        </ul>
+      <div className="competence reveal" id="competences">
+        <h2 className="section-title">Mes Compétences</h2>
         <h3>Des technologies que je maîtrise et que j’aime utiliser</h3>
         <p>
           Au fil de mes projets et de ma formation, j’ai développé des
@@ -421,12 +439,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="services" id="services">
-        <ul>
-          <li>
-            <h2 style={{ color: "#622EDD" }}>Mes Services</h2>
-          </li>
-        </ul>
+      <div className="services reveal" id="services">
+        <h2 className="section-title">Mes Services</h2>
         <h3>Des services que je propose pour vos projets</h3>
         <p>
           De la conception au déploiement, j’accompagne vos projets digitaux
@@ -517,12 +531,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="project" id="projects">
-        <ul>
-          <li>
-            <h2 style={{ color: "#622EDD" }}>Mes Projets</h2>
-          </li>
-        </ul>
+      <div className="project reveal" id="projects">
+        <h2 className="section-title">Mes Projets</h2>
         <h3>Des solutions concrètes pour un impact réel</h3>
         <p>
           Voici quelques-uns de mes projets réalisés, chacun avec des objectifs
@@ -704,13 +714,9 @@ function App() {
           </div>
         </div>
 
-        <div className="footer">
+        <div className="footer reveal">
           <div className="contact" id="contact">
-            <ul>
-              <li>
-                <h2 style={{ color: "#622EDD" }}>CONTACT</h2>
-              </li>
-            </ul>
+            <h2 className="section-title">CONTACT</h2>
             <h3>Echangeons ensemble !</h3>
             <p>
               Une idée de projet, une collaboration ou simplement envie de
